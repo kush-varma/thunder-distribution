@@ -1,0 +1,8 @@
+thunder.local_tasks:
+  deriver: 'Drupal\thunder_article\Plugin\Derivative\EditorSearchLocalTasks'
+  weight: 1
+
+thunder.local_tasks.all:
+  title: 'All categories'
+  route_name: view.editor_search.page
+  parent_id: views_view:view.editor_search.page
