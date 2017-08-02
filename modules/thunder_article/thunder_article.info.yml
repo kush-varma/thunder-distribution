@@ -25,6 +25,8 @@ dependencies:
   - thunder:thunder_media
   - thunder:thunder_paragraphs
   - thunder:thunder_taxonomy
+  - search_api:search_api_db
+  - facets:facets
   - drupal:user
   - drupal:views
 package: Thunder

@@ -15,16 +15,16 @@ class EditorSearchLocalTasks extends DeriverBase {
    */
   public function getDerivativeDefinitions($base_plugin_definition) {
     $weight = 0;
-    foreach (MediaBundle::loadMultiple() as $id => $bundle) {
-      $this->derivatives[$id] = $base_plugin_definition;
-      $this->derivatives[$id]['title'] = $bundle->label();
-      $this->derivatives[$id]['route_name'] = 'view.editor_search.bundle_page';
-      $this->derivatives[$id]['parent_id'] = 'views_view:view.editor_search.page';
-      $this->derivatives[$id]['weight'] = ++$weight;
-      $this->derivatives[$id]['route_parameters'] = ['source' => 'entity:media', 'type' => $id];
-    }
+
+    $this->derivatives['content'] = $base_plugin_definition;
+    $this->derivatives['content']['title'] = 'Media';
+    $this->derivatives['content']['route_name'] = 'view.editor_media_search.page';
+    $this->derivatives['content']['parent_id'] = 'views_view:view.editor_content_search.page';
+    $this->derivatives['content']['weight'] = ++$weight;
+    #$this->derivatives['content']['route_parameters'] = ['source' => 'entity:media', 'type' => $id];
 
     return parent::getDerivativeDefinitions($base_plugin_definition);
+
   }
 
 }

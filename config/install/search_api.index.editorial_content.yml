@@ -1,0 +1,102 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_paragraphs
+    - field.storage.paragraph.field_text
+    - field.storage.node.field_seo_title
+    - field.storage.node.field_teaser_text
+    - search_api.server.local_database
+  module:
+    - paragraphs
+    - search_api
+    - node
+id: editorial_content
+name: 'Editorial Content'
+description: ''
+read_only: false
+field_settings:
+  field_text:
+    label: 'Paragraphs » Paragraph » Text'
+    datasource_id: 'entity:node'
+    property_path: 'field_paragraphs:entity:field_text'
+    type: text
+    dependencies:
+      config:
+        - field.storage.node.field_paragraphs
+        - field.storage.paragraph.field_text
+      module:
+        - paragraphs
+  field_seo_title:
+    label: 'SEO Title'
+    datasource_id: 'entity:node'
+    property_path: field_seo_title
+    type: string
+    dependencies:
+      config:
+        - field.storage.node.field_seo_title
+  title:
+    label: Title
+    datasource_id: 'entity:node'
+    property_path: title
+    type: string
+  field_teaser_text:
+    label: 'Teaser Text'
+    datasource_id: 'entity:node'
+    property_path: field_teaser_text
+    type: text
+    dependencies:
+      config:
+        - field.storage.node.field_teaser_text
+  status:
+    label: null
+    datasource_id: 'entity:node'
+    property_path: status
+    type: boolean
+    indexed_locked: true
+    type_locked: true
+  uid:
+    label: null
+    datasource_id: 'entity:node'
+    property_path: uid
+    type: integer
+    indexed_locked: true
+    type_locked: true
+  node_grants:
+    label: 'Node access information'
+    property_path: search_api_node_grants
+    type: string
+    indexed_locked: true
+    type_locked: true
+    hidden: true
+datasource_settings:
+  'entity:node':
+    bundles:
+      default: true
+      selected: {  }
+    languages:
+      default: true
+      selected: {  }
+processor_settings:
+  add_url: {  }
+  aggregated_field: {  }
+  rendered_item: {  }
+  content_access:
+    weights:
+      preprocess_query: -30
+  ignorecase:
+    all_fields: false
+    fields:
+      - field_text
+      - field_seo_title
+      - title
+      - field_teaser_text
+    weights:
+      preprocess_index: -20
+      preprocess_query: -20
+tracker_settings:
+  default: {  }
+options:
+  index_directly: true
+  cron_limit: 50
+server: local_database
